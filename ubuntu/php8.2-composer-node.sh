@@ -46,7 +46,6 @@ export NVM_DIR="$HOME/.nvm"
 nvm install --lts
 nvm use --lts
 
-
 echo "--------------------------------------------------------"
 echo "Instalación completada con éxito para el usuario: $username"
 echo "Verifica las versiones con:"
