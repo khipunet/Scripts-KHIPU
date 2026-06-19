@@ -26,6 +26,19 @@ read -p "Dominio o IP del servidor: " domain
 read -p "Puerto de escucha (Host, ej. 80 o 8080): " listen_port
 read -p "Puerto interno de servicio (ej. 80 o 443): " internal_port
 
+# Limpiar conflicto con el sitio default de Nginx
+if [ -f /etc/nginx/sites-enabled/default ]; then
+    sudo rm /etc/nginx/sites-enabled/default
+fi
+
+# Verificar si el puerto está ocupado
+if lsof -Pi :$listen_port -sTCP:LISTEN -t >/dev/null ; then
+    echo "ERROR: El puerto $listen_port ya está siendo utilizado por otro proceso."
+    echo "Procesos que lo usan:"
+    sudo lsof -i :$listen_port
+    exit 1
+fi
+
 vhost_file="/etc/nginx/sites-available/$domain"
 
 # Configuración del bloque server usando la versión detectada
@@ -63,4 +76,3 @@ sudo chmod -R 775 /var/www/$username
 
 echo "Configuración aplicada exitosamente."
 echo "Sitio disponible en http://$domain:$listen_port"
-EOF
