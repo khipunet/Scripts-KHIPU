@@ -1,10 +1,5 @@
 # Scripts KHIPU
 
-Dale permisos de ejecución con el comando: chmod +x php8.2-composer-node.sh
+curl -sSL https://raw.githubusercontent.com/khipunet/Scripts-KHIPU/main/ubuntu/php-composer-node.sh -o setup.sh
 
-Ejecútalo con: ./php8.2-composer-node.sh
-
-curl -sSL https://raw.githubusercontent.com/khipunet/Scripts-KHIPU/main/ubuntu/php8.2-composer-node.sh -o php8.2-composer-node.sh
-
-chmod +x php8.2-composer-node.sh
-./php8.2-composer-node.sh
+sudo bash setup.sh
