@@ -46,6 +46,12 @@ sudo chmod +x /usr/local/bin/composer
 nvm install --lts
 nvm use --lts
 
+# Configuración de carpeta web
+echo "--- Creando directorio web en /var/www/$username ---"
+sudo mkdir -p /var/www/$username
+sudo chown -R $username:$username /var/www/$username
+sudo chmod -R 755 /var/www/$username
+
 echo "--- Validación de instalación ---"
 php -v
 composer --version
@@ -58,3 +64,4 @@ sudo -u "$username" bash /tmp/instalar_proceso.sh
 
 rm /tmp/instalar_proceso.sh
 echo "Proceso finalizado. El entorno está configurado para $username."
+echo "Tu carpeta web está lista en: /var/www/$username"
